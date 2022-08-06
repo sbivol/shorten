@@ -1,11 +1,11 @@
 # Installation
 
-Download `shorten.py` and link it somewhere in your PATH.
+Download `shorten` somewhere in your PATH.
 For example, if ~/.local/bin/ is in your PATH:
 
 ```sh
-$ ln -s shorten.py ~/.local/bin/shorten
-$ chmod a+x shorten.py
+$ wget https://raw.githubusercontent.com/sbivol/shorten/master/shorten --directory-prefix="$HOME/.local/bin/"
+$ chmod a+x ~/.local/bin/shorten
 ```
 
 # Usage
