@@ -17,6 +17,7 @@
 
 import sys
 
+
 def shorten(string, dir_len="80"):
     string = string.strip()
     length = abs(int(dir_len)) - 1
@@ -30,17 +31,18 @@ def shorten(string, dir_len="80"):
     if direction == "":
         first_slice_len = int(length / 2)
         second_slice_len = length - first_slice_len
-        return '{0}…{1}'.format(string[:first_slice_len], string[-second_slice_len:])
+        return "{0}…{1}".format(string[:first_slice_len], string[-second_slice_len:])
 
     if direction == "-":
-        return '{0}…'.format(string[:length])
+        return "{0}…".format(string[:length])
 
     if direction == "+":
-        return '…{0}'.format(string[-length:])
+        return "…{0}".format(string[-length:])
 
 
 def get_terminal_width():
     import shutil
+
     return shutil.get_terminal_size()[0]
 
 
