@@ -46,9 +46,33 @@ def get_terminal_width():
     return shutil.get_terminal_size()[0]
 
 
+def show_help():
+    import inspect
+
+    print(
+        inspect.cleandoc(
+            """
+    USAGE:
+        shorten [[DIRECTION][LENGTH]] STRING
+
+    PARAMETERS:
+        DIRECTION   - (cut from the right) or + (cut from the left).
+                    If absent, text is cut from the middle.
+        LENGTH      An integer. If absent, the width of this terminal is used.
+                    When piping text to shorten, 80 is the default value.
+        STRING      The text to shorten. Can be lines from standard input.
+    """
+        )
+    )
+
+
 if __name__ == "__main__":
     # We are not reading from STDIN
     if sys.stdin.isatty():
+        if len(sys.argv) == 1:
+            show_help()
+            sys.exit(0)
+
         # If more than one parameter were supplied,
         # the first parameter is {[direction][length]}
         if len(sys.argv) > 2:
@@ -61,6 +85,10 @@ if __name__ == "__main__":
 
         # The last parameter is the string to shorten
         if len(sys.argv) > 1:
+            if sys.argv[1] in ("-h", "--help"):
+                show_help()
+                sys.exit(0)
+
             string = sys.argv[-1]
 
         print(shorten(string, length))
